@@ -7,12 +7,12 @@
     $scope = null;
     messages = null;
     beforeEach(module('ngPostMessage'));
-    beforeEach(inject(function($rootScope, $compile, _$postMessage_) {
+    beforeEach(inject(function($rootScope, $compile, postMessageService) {
       var frame, html;
       $scope = $rootScope;
-      $scope.sender = jasmine.createSpyObj('sender', ['postMessage']);
+      $scope.sender = jasmine.createSpyObj('sender', ['postMessageService']);
       messages = ["foo", "{\"message\":\"foo\"}", "connect"];
-      postMessage = _$postMessage_;
+      postMessage = postMessageService;
       spyOn(postMessage, 'messages').and.callThrough();
       frame = document.createElement('iframe');
       html = '<html><head><script>setInterval(function(){window.parent.postMessage(JSON.stringify({"ping":"ping"}),"*")}, 1000)</script></head><body></body></html>';

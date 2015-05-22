@@ -6,9 +6,9 @@
     $rootScope = null;
     messages = null;
     beforeEach(module('ngPostMessage'));
-    beforeEach(inject(function(_$rootScope_, _$postMessage_) {
+    beforeEach(inject(function(_$rootScope_, postMessageService) {
       $rootScope = _$rootScope_;
-      postMessage = _$postMessage_;
+      postMessage = postMessageService;
       messages = ["foo", "bar"];
     }));
     it("has no messages", function() {
